@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Restaurant from './Restaurant'
 
 class RestaurantsContainer extends Component {
 
@@ -6,9 +8,17 @@ class RestaurantsContainer extends Component {
     console.log(this.props.restaurants)
     return(
       <div>
+      {this.props.restaurants.slice(0, 8).map(restaurant =>
+          <Restaurant key={restaurant.id} restaurant={restaurant} />)}
+
       </div>
     )
   }
 }
 
-export default RestaurantsContainer;
+const mapStateToProps = state => {
+
+  return state
+}
+
+export default connect(mapStateToProps)(RestaurantsContainer);
