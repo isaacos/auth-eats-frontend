@@ -4,11 +4,12 @@ import './App.css';
 import { connect } from 'react-redux'
 import RestaurantsContainer from './components/RestaurantsContainer'
 import NavBar from './components/NavBar'
+import SelectedRestaurant from './components/SelectedRestaurant'
+import {BrowserRouter as Router, Route, Link, NavLink, withRouter} from "react-router-dom"
+
 
 class App extends Component {
-  state = {
-  restaurants: {}
-}
+
 
 
 
@@ -21,13 +22,19 @@ class App extends Component {
 
 
 
+  // restaurantsContainer = routerProps => <RestaurantsContainer {...routerProps}/>
+
+
+
   render() {
+    console.log(this.props.SelectedRestaurant)
     return (
       <div className="App">
         <header className="App-header">
         </header>
         <NavBar />
-        <RestaurantsContainer/>
+        <Route exact path="/restaurants" component={RestaurantsContainer} />
+        <Route path="/restaurants/:slug" component={SelectedRestaurant}/>
       </div>
     );
   }
@@ -44,4 +51,4 @@ const mapDispatchToProps =  {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

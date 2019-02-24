@@ -4,12 +4,22 @@ import { connect } from 'react-redux';
 class NavBar extends Component {
 
   render () {
-    console.log(this.props.restaurants)
     return(
       <div>
+      <input type="text" onChange={(event) => this.props.searchInput(event.target.value)}/>
+      <input type="text"/>
       </div>
     )
   }
 }
 
-export default NavBar;
+const mapStateToProps = state => {
+  return state
+}
+
+const mapDispatchToProps =  {
+  searchInput: (inputString) => ({type: 'SEARCHTYPECHANGE', inputString})
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

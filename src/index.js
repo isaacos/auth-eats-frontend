@@ -5,18 +5,25 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux';
 import { createStore } from 'redux'
+import {BrowserRouter as Router } from "react-router-dom"
 
-const reducer = ( state = {restaurants: []}, action ) => {
+const reducer = ( state = {restaurants: [], searchTypeTerm: '', currentRestaurant: null}, action ) => {
   switch(action.type){
     case 'LOADRESTAURANTS':
       return {...state, restaurants: action.restaurants}
+      break
+    case 'SEARCHTYPECHANGE':
+      return {...state, searchTypeTerm: action.inputString  }
+      break
+    case 'SETCURRENTRESTAURANT':
+      return {...state, currentRestaurant: action.inputRestaurant}
   }
   return state
 }
 
 const store = createStore(reducer)
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
