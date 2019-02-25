@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import { createStore } from 'redux'
 import {BrowserRouter as Router } from "react-router-dom"
 
-const reducer = ( state = {restaurants: [], searchTypeTerm: '', currentRestaurant: null}, action ) => {
+const reducer = ( state = {restaurants: [], searchTypeTerm: '', currentRestaurant: null, currentUser: null}, action ) => {
   switch(action.type){
     case 'LOADRESTAURANTS':
       return {...state, restaurants: action.restaurants}
@@ -17,6 +17,9 @@ const reducer = ( state = {restaurants: [], searchTypeTerm: '', currentRestauran
       break
     case 'SETCURRENTRESTAURANT':
       return {...state, currentRestaurant: action.inputRestaurant}
+      break
+    case 'SETCURRENTUSER':
+      return {...state, currentUser: action.user}
   }
   return state
 }

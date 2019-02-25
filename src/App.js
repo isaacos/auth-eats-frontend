@@ -14,10 +14,20 @@ class App extends Component {
 
 
   componentDidMount(){
-
     fetch('http://localhost:3000/api/v1/restaurants')
     .then(r => r.json())
-    .then(data => this.props.loadrestaurant(data))
+    .then(data => this.loadRestaurantAndSetCurrentRestaurant(data))
+  }
+
+  loadRestaurantAndSetCurrentRestaurant = (data) => {
+    this.props.loadrestaurant(data)
+    if(this.props.history.location.pathname.split('/')[2] !== undefined){
+      let selectedRestaurant = data.find(restaurant => {
+        return restaurant.slug === this.props.history.location.pathname.split('/')[2]})
+        this.props.setCurrentRestaurant(selectedRestaurant)
+    }
+
+
   }
 
 
@@ -27,7 +37,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props.SelectedRestaurant)
     return (
       <div className="App">
         <header className="App-header">
@@ -46,7 +55,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps =  {
 
-    loadrestaurant: (restaurants) => ({type: 'LOADRESTAURANTS', restaurants})
+    loadrestaurant: (restaurants) => ({type: 'LOADRESTAURANTS', restaurants}),
+    setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant})
 
 }
 

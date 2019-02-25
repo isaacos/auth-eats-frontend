@@ -12,11 +12,11 @@ filteredCategory = () => {
 }
 
   render () {
-
+    console.log(this.props)
     return(
       <div className="restaurant-container">
       {this.filteredCategory().slice(0, 8).map(restaurant =>
-          <Restaurant key={restaurant.id} history={this.props.history} restaurant={restaurant} />)}
+          <Restaurant key={restaurant.slug} history={this.props.history} restaurant={restaurant} />)}
 
       </div>
     )

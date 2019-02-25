@@ -15,8 +15,8 @@ class Restaurant extends Component {
       <div>
         <img className="contained-image" src={this.props.restaurant.image_url}/>
         <h3 onClick={() => {
-
-          this.props.history.push(`/restaurants/${this.sluggifyCurrentRestaurant(this.props.restaurant)}`)
+          this.props.setCurrentRestaurant(this.props.restaurant)
+          this.props.history.push(`/restaurants/${this.props.restaurant.slug}`)
         }}>{this.props.restaurant.name}</h3>
         <p>{this.props.restaurant.location}</p>
       </div>
