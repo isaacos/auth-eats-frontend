@@ -4,9 +4,7 @@ import ReviewContainer from './ReviewContainer'
 
 class SelectedRestaurant extends Component {
 
-displayCurrentRestaurant = () => {
-
-}
+  
 
 
 
@@ -41,7 +39,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant})
+  setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant}),
 
 }
 

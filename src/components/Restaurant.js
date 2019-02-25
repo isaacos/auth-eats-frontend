@@ -8,10 +8,7 @@ class Restaurant extends Component {
   }
 
   render () {
-    console.log(this.props.restaurant.slug)
-
     return(
-
       <div>
         <img className="contained-image" src={this.props.restaurant.image_url}/>
         <h3 onClick={() => {
@@ -21,9 +18,7 @@ class Restaurant extends Component {
         <p>{this.props.restaurant.location}</p>
       </div>
     )
-
   }
-
 }
 
 const mapStateToProps = state => {
