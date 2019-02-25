@@ -47,6 +47,11 @@ class Review extends Component {
         return review
       }
     })
+    this.updateOrDeleteReview(updatedReviews)
+  }
+
+  updateOrDeleteReview = (updatedReviews) => {
+
     let updatedRestaurant = {...this.props.currentRestaurant, reviews: updatedReviews}
     let updatedRestaurantList = this.props.restaurants.map(restaurant => {
       if(restaurant.id === updatedRestaurant.id){
@@ -55,27 +60,14 @@ class Review extends Component {
         return restaurant
       }
     })
-    console.log(updatedRestaurant)
     this.props.loadrestaurant(updatedRestaurantList)
     this.props.setCurrentRestaurant(updatedRestaurant)
-
   }
-
 
 
   removedReview = (deletedReview) => {
     let updatedReviews = this.props.currentRestaurant.reviews.filter( review => review.id != deletedReview.id)
-    let updatedRestaurant = {...this.props.currentRestaurant, reviews: updatedReviews}
-    let updatedRestaurantList = this.props.restaurants.map(restaurant => {
-      if(restaurant.id === updatedRestaurant.id){
-        return updatedRestaurant
-      } else {
-        return restaurant
-      }
-    })
-    console.log(updatedRestaurant)
-    this.props.loadrestaurant(updatedRestaurantList)
-    this.props.setCurrentRestaurant(updatedRestaurant)
+    this.updateOrDeleteReview(updatedReviews)
   }
 
   render() {
