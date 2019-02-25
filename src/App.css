@@ -4,13 +4,11 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
   pointer-events: none;
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +19,16 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.restaurant-container {
+  float: right;
+  width: 35vmin;
+  border: solid;
+}
+
+.contained-image {
+  width: 30vmin;
 }
 
 @keyframes App-logo-spin {

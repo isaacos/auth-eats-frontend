@@ -4,44 +4,61 @@ import './App.css';
 import { connect } from 'react-redux'
 import RestaurantsContainer from './components/RestaurantsContainer'
 import NavBar from './components/NavBar'
+import SelectedRestaurant from './components/SelectedRestaurant'
+import {BrowserRouter as Router, Route, Link, NavLink, withRouter} from "react-router-dom"
+
 
 class App extends Component {
-  state = {
-  restaurants: {}
-}
+
+
+
 
   componentDidMount(){
-
     fetch('http://localhost:3000/api/v1/restaurants')
     .then(r => r.json())
-    .then(data => this.setState({restaurants: data}))
+    .then(data => this.loadRestaurantAndSetCurrentRestaurant(data))
+  }
+
+  loadRestaurantAndSetCurrentRestaurant = (data) => {
+    this.props.loadrestaurant(data)
+    if(this.props.history.location.pathname.split('/')[2] !== undefined){
+      let selectedRestaurant = data.find(restaurant => {
+        return restaurant.slug === this.props.history.location.pathname.split('/')[2]})
+        this.props.setCurrentRestaurant(selectedRestaurant)
+    }
+
+
   }
 
 
 
-  render() {
+  // restaurantsContainer = routerProps => <RestaurantsContainer {...routerProps}/>
 
+
+
+  render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
         </header>
         <NavBar />
-        <RestaurantsContainer restaurants={this.state.restaurants}/>
+        <Route exact path="/restaurants" component={RestaurantsContainer} />
+        <Route path="/restaurants/:slug" component={SelectedRestaurant}/>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return state
+}
+
+const mapDispatchToProps =  {
+
+    loadrestaurant: (restaurants) => ({type: 'LOADRESTAURANTS', restaurants}),
+    setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant})
+
+}
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
