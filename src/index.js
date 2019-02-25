@@ -20,6 +20,9 @@ const reducer = ( state = {restaurants: [], searchTypeTerm: '', currentRestauran
       break
     case 'SETCURRENTUSER':
       return {...state, currentUser: action.user}
+      break
+    case 'ADDREVIEW':
+      return {...state, currentRestaurant: action.currentRestaurantWithReview}
   }
   return state
 }
