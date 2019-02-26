@@ -79,8 +79,7 @@ class Review extends Component {
         <div>
           {this.props.review.rating}
         </div>
-        {console.log(this.props)}
-        {this.props.currentUser && this.props.currentUser.id === this.props.review.user.id ?
+          {this.props.currentUser && this.props.currentUser.id === this.props.review.user.id ?
           <div>
             <div>
               <form onSubmit={event => this.edit(event)}>
@@ -89,8 +88,6 @@ class Review extends Component {
                 <input type="submit" value="Edit"/>
               </form>
             </div>
-
-
             <button onClick={() => this.delete()}> Delete</button>
           </div>
         :

@@ -5,13 +5,11 @@ import { connect } from 'react-redux'
 import RestaurantsContainer from './components/RestaurantsContainer'
 import NavBar from './components/NavBar'
 import SelectedRestaurant from './components/SelectedRestaurant'
+import SignupModal from './components/SignupModal'
 import {BrowserRouter as Router, Route, Link, NavLink, withRouter} from "react-router-dom"
 
 
 class App extends Component {
-
-
-
 
   componentDidMount(){
     fetch('http://localhost:3000/api/v1/restaurants')
@@ -26,17 +24,16 @@ class App extends Component {
         return restaurant.slug === this.props.history.location.pathname.split('/')[2]})
         this.props.setCurrentRestaurant(selectedRestaurant)
     }
-
-
   }
 
 
 
-  // restaurantsContainer = routerProps => <RestaurantsContainer {...routerProps}/>
+
 
 
 
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <header className="App-header">
@@ -44,6 +41,7 @@ class App extends Component {
         <NavBar />
         <Route exact path="/restaurants" component={RestaurantsContainer} />
         <Route path="/restaurants/:slug" component={SelectedRestaurant}/>
+        <Route component={SignupModal}/>
       </div>
     );
   }
