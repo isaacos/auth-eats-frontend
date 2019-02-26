@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Review from './Review'
+import AuthenticReview from './AuthenticReview'
 
-class ReviewContainer extends Component {
+class AuthenticReviewContainer extends Component {
 
   state = {
     rating: null,
@@ -54,13 +54,6 @@ class ReviewContainer extends Component {
     return foundReview
   }
 
-  // hideNewReviewInput = () => {
-  //   if(this.state.review){
-  //     return (
-  //
-  //     )
-  //   }
-  // }
 
 
 
@@ -68,7 +61,7 @@ class ReviewContainer extends Component {
     console.log(this.findUserReview())
     return(
       <div>
-      <h2>Generic Reviews</h2>
+        <h2>Authentic Reviews</h2>
         {(this.props.currentUser && !this.findUserReview()) ?
           <form onSubmit={event => this.submitHandler(event)}>
           <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
@@ -80,8 +73,8 @@ class ReviewContainer extends Component {
         }
 
         {this.props.reviews.map(review => {
-          if(review.authentic === false){
-              return <Review key={review.id} review={review} />
+          if(review.authentic === true){
+              return <AuthenticReview key={review.id} review={review} />
           }
         })}
       </div>
@@ -98,4 +91,4 @@ const mapDispatchToProps = {
   setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant})
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthenticReviewContainer);

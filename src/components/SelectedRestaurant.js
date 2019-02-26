@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReviewContainer from './ReviewContainer'
+import AuthenticReviewContainer from './AuthenticReviewContainer'
 
 class SelectedRestaurant extends Component {
 
-  
+getNonAuthenticReview = () => {
+  const nonAuthenticReviews = this.props.currentRestaurant.reviews.filter(review => review.authentic === false)
+  return nonAuthenticReviews
 
-
-
+}
 
   render () {
+    console.log('Non Auth Reviews lists:', this.nonAuthenticReviews)
     return(
       <div>
       {this.props.currentRestaurant
@@ -21,7 +24,12 @@ class SelectedRestaurant extends Component {
               <div>
                 {this.props.currentRestaurant.category}
               </div>
-              <ReviewContainer reviews={this.props.currentRestaurant.reviews}/>
+              <div className="right">
+                <ReviewContainer reviews={this.props.currentRestaurant.reviews}/>
+              </div>
+              <div className="left">
+                <AuthenticReviewContainer reviews={this.props.currentRestaurant.reviews}/>
+              </div>
             </div>
         :
             <div>

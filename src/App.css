@@ -27,6 +27,14 @@
   border: solid;
 }
 
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
 .contained-image {
   width: 30vmin;
 }
