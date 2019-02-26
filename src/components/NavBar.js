@@ -29,16 +29,22 @@ class NavBar extends Component {
   render () {
     return(
       <div>
-      <a onClick={() => {(this.props.history.push('/restaurants'))}}> Home</a>
-      <input type="text" onChange={(event) => this.props.searchInput(event.target.value)}/>
-      <input type="text"/>
-      <a>Login</a>
-      <a onClick={() => this.props.toggleSignupModal()}>Signup</a>
-      <form onSubmit={event => this.login(event)}>
-        <input type='text' placeholder="email" onChange={event => this.setState({email: event.target.value})}/>
-        <input type='password' placeholder="password" onChange={event => this.setState({password: event.target.value})}/>
-        <input type='submit' placeholder='submit' />
-      </form>
+        <a onClick={() => {(this.props.history.push('/restaurants'))}}> Home</a>
+        <input type="text" onChange={(event) => this.props.searchInput(event.target.value)}/>
+        <input type="text"/>
+        {this.props.currentUser ?
+          <a> {`Hello ${this.props.currentUser.name}`} </a>
+          :
+          <div>
+            <a>Login </a>
+            <a onClick={() => this.props.toggleSignupModal()}>Signup</a>
+            <form onSubmit={event => this.login(event)}>
+              <input type='text' placeholder="email" onChange={event => this.setState({email: event.target.value})}/>
+              <input type='password' placeholder="password" onChange={event => this.setState({password: event.target.value})}/>
+              <input type='submit' placeholder='submit' />
+            </form>
+          </div>
+        }
       </div>
     )
   }
