@@ -12,7 +12,6 @@ getNonAuthenticReview = () => {
 }
 
   render () {
-    console.log('Non Auth Reviews lists:', this.nonAuthenticReviews)
     return(
       <div>
       {this.props.currentRestaurant

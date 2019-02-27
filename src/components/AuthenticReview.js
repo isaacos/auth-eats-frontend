@@ -30,7 +30,7 @@ class AuthenticReview extends Component {
         rating: this.state.rating,
         restaurant_id: this.props.currentRestaurant.id,
         user_id: this.props.currentUser.id,
-        authentic: false
+        authentic: true
       })
     })
 
@@ -66,13 +66,14 @@ class AuthenticReview extends Component {
 
 
   removedReview = (deletedReview) => {
-    let updatedReviews = this.props.currentRestaurant.reviews.filter( review => review.id != deletedReview.id)
+    let updatedReviews = this.props.currentRestaurant.reviews.filter( review => review.id !== deletedReview.id)
     this.updateOrDeleteReview(updatedReviews)
   }
 
   render() {
     return(
-      <div>
+      <div className="review-card">
+      <div className="inner-card">
         <div>
           {this.props.review.body}
         </div>
@@ -91,10 +92,10 @@ class AuthenticReview extends Component {
             <button onClick={() => this.delete()}> Delete</button>
           </div>
         :
-        <div></div>
-
+          <div></div>
         }
-        </div>
+      </div>
+      </div>
     )
   }
 }

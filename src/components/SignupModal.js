@@ -33,7 +33,6 @@ class SignupModal extends Component {
 
 
   render(){
-    console.log(this.props)
     return (
       <div className={this.props.signupModal ? "modal" : "hidden"}>
         <form onSubmit={event => this.createUser(event)}>
