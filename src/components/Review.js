@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-materialize';
 
 
 class Review extends Component {
@@ -66,35 +67,36 @@ class Review extends Component {
 
 
   removedReview = (deletedReview) => {
-    let updatedReviews = this.props.currentRestaurant.reviews.filter( review => review.id != deletedReview.id)
+    let updatedReviews = this.props.currentRestaurant.reviews.filter( review => review.id !== deletedReview.id)
     this.updateOrDeleteReview(updatedReviews)
   }
 
   render() {
     return(
-      <div>
-        <div>
-          {this.props.review.body}
-        </div>
-        <div>
-          {this.props.review.rating}
-        </div>
-          {this.props.currentUser && this.props.currentUser.id === this.props.review.user.id ?
+      <div className="review-card">
+        <div className="inner-card">
           <div>
-            <div>
-              <form onSubmit={event => this.edit(event)}>
-                <input type="text" value={this.state.body} onChange={(event) => this.setState({body: event.target.value})}/>
-                <input type="number" value={this.state.rating} onChange={(event) => this.setState({rating: event.target.value})}/>
-                <input type="submit" value="Edit"/>
-              </form>
-            </div>
-            <button onClick={() => this.delete()}> Delete</button>
+            {this.props.review.body}
           </div>
-        :
-        <div></div>
-
-        }
+          <div>
+            {this.props.review.rating}
+          </div>
+            {this.props.currentUser && this.props.currentUser.id === this.props.review.user.id ?
+            <div>
+              <div>
+                <form onSubmit={event => this.edit(event)}>
+                    <input type="text" value={this.state.body} onChange={(event) => this.setState({body: event.target.value})}/>
+                    <input type="number" value={this.state.rating} onChange={(event) => this.setState({rating: event.target.value})}/>
+                    <input type="submit" value="Edit"/>
+                </form>
+              </div>
+              <Button waves='light' onClick={() => this.delete()}> Delete</Button>
+            </div>
+            :
+            <div></div>
+            }
         </div>
+      </div>
     )
   }
 }

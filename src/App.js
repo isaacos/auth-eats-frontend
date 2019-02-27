@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { connect } from 'react-redux'
 import RestaurantsContainer from './components/RestaurantsContainer'
 import NavBar from './components/NavBar'
 import SelectedRestaurant from './components/SelectedRestaurant'
 import SignupModal from './components/SignupModal'
-import {BrowserRouter as Router, Route, Link, NavLink, withRouter} from "react-router-dom"
+import { Route, withRouter} from "react-router-dom"
 
 
 class App extends Component {
@@ -33,7 +32,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props)
     return (
       <div className="App">
         <header className="App-header">

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {BrowserRouter as Router, Route, Link, NavLink, withRouter} from "react-router-dom"
+import { withRouter} from "react-router-dom";
+import { Navbar, NavItem, Modal } from 'react-materialize';
 
 class NavBar extends Component {
 
@@ -28,14 +29,14 @@ class NavBar extends Component {
 
   render () {
     return(
-      <div>
-        <a onClick={() => {(this.props.history.push('/restaurants'))}}> Home</a>
-        <input type="text" onChange={(event) => this.props.searchInput(event.target.value)}/>
-        <input type="text"/>
+      <Navbar>
+        <NavItem onClick={() => {(this.props.history.push('/restaurants'))}}> Home</NavItem>
+        <li><input type="text" onChange={(event) => this.props.searchInput(event.target.value)}/></li>
+
         {this.props.currentUser ?
           <a> {`Hello ${this.props.currentUser.name}`} </a>
           :
-          <div>
+          <li>
             <a>Login </a>
             <a onClick={() => this.props.toggleSignupModal()}>Signup</a>
             <form onSubmit={event => this.login(event)}>
@@ -43,9 +44,9 @@ class NavBar extends Component {
               <input type='password' placeholder="password" onChange={event => this.setState({password: event.target.value})}/>
               <input type='submit' placeholder='submit' />
             </form>
-          </div>
+          </li>
         }
-      </div>
+      </Navbar>
     )
   }
 }

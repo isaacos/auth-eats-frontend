@@ -23,8 +23,10 @@
 
 .restaurant-container {
   float: right;
-  width: 35vmin;
+  width: 80vmin;
   border: solid;
+  margin-top: 7vmin;
+  margin-right: 7vmin;
 }
 
 .right {
@@ -33,6 +35,16 @@
 
 .left {
   float: left;
+}
+
+.review-card {
+  border-bottom: 4px dotted black;
+  margin-right: 2vmin;
+  margin-left: 2vmin;
+}
+
+.inner-card {
+  margin-bottom: 3vmin;
 }
 
 .contained-image {

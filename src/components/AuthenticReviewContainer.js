@@ -44,7 +44,7 @@ class AuthenticReviewContainer extends Component {
     if(this.props.currentUser){
 
       foundReview = this.props.currentRestaurant.reviews.find(review => {
-          return review.user.id == this.props.currentUser.id
+          return review.user.id === this.props.currentUser.id
       })
     }
 
@@ -58,18 +58,17 @@ class AuthenticReviewContainer extends Component {
 
 
   render () {
-    console.log(this.findUserReview())
     return(
       <div>
-        <h2>Authentic Reviews</h2>
+        <h4>Authentic Reviews</h4>
         {(this.props.currentUser && !this.findUserReview()) ?
-          <form onSubmit={event => this.submitHandler(event)}>
-          <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
-          <input type="number" placeholder="1 outa 5" onChange={event => this.setState({rating: event.target.value})}/>
-          <input type="submit" placeholder="submit" />
-          </form>
+            <form onSubmit={event => this.submitHandler(event)}>
+            <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
+            <input type="number" placeholder="1 outa 5" onChange={event => this.setState({rating: event.target.value})}/>
+            <input type="submit" placeholder="submit" />
+            </form>
           :
-          <div></div>
+            <div></div>
         }
 
         {this.props.reviews.map(review => {
