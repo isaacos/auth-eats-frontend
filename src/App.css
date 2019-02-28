@@ -63,3 +63,12 @@
 .hidden {
   display: none;
 }
+
+.categories-list {
+  height: 50vmin;
+  width: 40vmin;
+  float: right;
+  margin-right: 15vmin;
+  overflow-y: scroll;
+  border: 3px solid black;
+}
