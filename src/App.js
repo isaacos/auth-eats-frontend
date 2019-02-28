@@ -5,6 +5,7 @@ import RestaurantsContainer from './components/RestaurantsContainer'
 import NavBar from './components/NavBar'
 import SelectedRestaurant from './components/SelectedRestaurant'
 import SignupModal from './components/SignupModal'
+import Category from './components/Category'
 import { Route, withRouter} from "react-router-dom"
 
 
@@ -13,7 +14,11 @@ class App extends Component {
   componentDidMount(){
     fetch('http://localhost:3000/api/v1/restaurants')
     .then(r => r.json())
-    .then(data => this.loadRestaurantAndSetCurrentRestaurant(data))
+    .then(restaurantsData => this.loadRestaurantAndSetCurrentRestaurant(restaurantsData))
+
+    fetch('http://localhost:3000/api/v1/categories')
+    .then(r => r.json())
+    .then(data => this.props.loadcategetories(data))
   }
 
   loadRestaurantAndSetCurrentRestaurant = (data) => {
@@ -26,12 +31,8 @@ class App extends Component {
   }
 
 
-
-
-
-
-
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <header className="App-header">
@@ -39,7 +40,8 @@ class App extends Component {
         <NavBar />
         <Route exact path="/restaurants" component={RestaurantsContainer} />
         <Route path="/restaurants/:slug" component={SelectedRestaurant}/>
-        <Route component={SignupModal}/>
+        <Route exact path="/signup" component={SignupModal}/>
+        <Route exact path="/add-categories" component={Category}/>
       </div>
     );
   }
@@ -52,7 +54,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps =  {
 
     loadrestaurant: (restaurants) => ({type: 'LOADRESTAURANTS', restaurants}),
-    setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant})
+    setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant}),
+    loadcategetories: (categories) => ({type: 'LOADCATEGORIES', categories})
 
 }
 

@@ -28,6 +28,7 @@ class NavBar extends Component {
   }
 
   render () {
+
     return(
       <Navbar>
         <NavItem onClick={() => {(this.props.history.push('/restaurants'))}}> Home</NavItem>
@@ -38,7 +39,7 @@ class NavBar extends Component {
           :
           <li>
             <a>Login </a>
-            <a onClick={() => this.props.toggleSignupModal()}>Signup</a>
+            <a onClick={() => this.props.history.push('/signup')}>Signup</a>
             <form onSubmit={event => this.login(event)}>
               <input type='text' placeholder="email" onChange={event => this.setState({email: event.target.value})}/>
               <input type='password' placeholder="password" onChange={event => this.setState({password: event.target.value})}/>

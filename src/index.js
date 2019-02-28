@@ -9,10 +9,12 @@ import {BrowserRouter as Router } from "react-router-dom"
 
 
 
-const reducer = ( state = {restaurants: [], searchTypeTerm: '', currentRestaurant: null, currentUser: null, signupModal: false}, action ) => {
+const reducer = ( state = {restaurants: [], categories: [], searchTypeTerm: '', currentRestaurant: null, currentUser: null, signupModal: false}, action ) => {
   switch(action.type){
     case 'LOADRESTAURANTS':
       return {...state, restaurants: action.restaurants}
+    case 'LOADCATEGORIES':
+      return {...state, categories: action.categories}
     case 'SEARCHTYPECHANGE':
       return {...state, searchTypeTerm: action.inputString  }
     case 'SETCURRENTRESTAURANT':

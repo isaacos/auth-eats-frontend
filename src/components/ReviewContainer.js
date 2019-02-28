@@ -65,7 +65,6 @@ class ReviewContainer extends Component {
 
 
   render () {
-    console.log(this.findUserReview())
     return(
       <div>
       <h4>Generic Reviews</h4>

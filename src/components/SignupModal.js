@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Modal } from 'react-materialize';
 
 class SignupModal extends Component {
   state = {
@@ -34,7 +35,8 @@ class SignupModal extends Component {
 
   render(){
     return (
-      <div className={this.props.signupModal ? "modal" : "hidden"}>
+      <div  >
+
         <form onSubmit={event => this.createUser(event)}>
           <input type="text" placeholder="name" onChange={event => this.setState({name: event.target.value})}/>
           <input type="text" placeholder="nationality" onChange={event => this.setState({nationality: event.target.value})}/>
@@ -43,6 +45,7 @@ class SignupModal extends Component {
           <input type="password" placeholder="password" onChange={event => this.setState({password: event.target.value})}/>
           <input type="submit" placeholder="Make Account" />
         </form>
+
       </div>
     )
   }
