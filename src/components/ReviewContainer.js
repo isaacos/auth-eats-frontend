@@ -54,13 +54,21 @@ class ReviewContainer extends Component {
     return foundReview
   }
 
-  // hideNewReviewInput = () => {
-  //   if(this.state.review){
-  //     return (
-  //
-  //     )
-  //   }
-  // }
+  currentUserSharedCategory = () => {
+    return this.props.currentUser.category_user.find( cu => {
+      return this.props.currentRestaurant.categories.find( c => {
+        return (cu.category_id === c.id && cu.permission === true)
+      })
+    })
+  }
+
+  canDisplayReviewForm = () =>{
+    if(this.props.currentUser && !this.findUserReview() ){
+      if(this.currentUserSharedCategory() === undefined){
+        return true
+      }
+    }
+  }
 
 
 
@@ -68,7 +76,7 @@ class ReviewContainer extends Component {
     return(
       <div>
       <h4>Generic Reviews</h4>
-        {(this.props.currentUser && !this.findUserReview()) ?
+        {(this.canDisplayReviewForm()) ?
           <form onSubmit={event => this.submitHandler(event)}>
           <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
           <input type="number" placeholder="1 outa 5" onChange={event => this.setState({rating: event.target.value})}/>

@@ -14,12 +14,17 @@ class AuthenticReviewContainer extends Component {
     this.props.addReview({...this.props.currentRestaurant, reviews: reviews})
   }
 
+  currentUserSharedCategory = () => {
+    return this.props.currentUser.category_user.find( cu => {
+      return this.props.currentRestaurant.categories.find( c => {
+
+        return (cu.category_id === c.id && cu.permission === true)
+      })
+    })
+  }
+
   submitHandler = event => {
     event.preventDefault()
-    let authentic = false
-    if(this.props.currentUser.nationality === this.props.currentRestaurant.category){
-      authentic = true
-    }
     fetch('http://localhost:3000/api/v1/reviews', {
       method: 'POST',
       headers: {
@@ -29,7 +34,7 @@ class AuthenticReviewContainer extends Component {
       body: JSON.stringify({
         body: this.state.body,
         rating: this.state.rating,
-        authentic: authentic,
+        authentic: true,
         restaurant_id: this.props.currentRestaurant.id,
         user_id: this.props.currentUser.id
       })
@@ -40,9 +45,7 @@ class AuthenticReviewContainer extends Component {
 
   findUserReview = () => {
     let foundReview = null
-
     if(this.props.currentUser){
-
       foundReview = this.props.currentRestaurant.reviews.find(review => {
           return review.user.id === this.props.currentUser.id
       })
@@ -54,14 +57,23 @@ class AuthenticReviewContainer extends Component {
     return foundReview
   }
 
+  canDisplayAuthenticReviewForm = () =>{
+    if(this.props.currentUser && !this.findUserReview() ){
+      if(this.currentUserSharedCategory()){
+        return true
+      }
+    }
+  }
 
+
+  // console.log(this.currentUserSharedCategory())
 
 
   render () {
     return(
       <div>
         <h4>Authentic Reviews</h4>
-        {(this.props.currentUser && !this.findUserReview()) ?
+        {this.canDisplayAuthenticReviewForm() ?
             <form onSubmit={event => this.submitHandler(event)}>
             <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
             <input type="number" placeholder="1 outa 5" onChange={event => this.setState({rating: event.target.value})}/>
