@@ -9,12 +9,14 @@ import {BrowserRouter as Router } from "react-router-dom"
 
 
 
-const reducer = ( state = {restaurants: [], categories: [], searchTypeTerm: '', currentRestaurant: null, currentUser: null, signupModal: false}, action ) => {
+const reducer = ( state = {restaurants: [], categories: [], users: [], searchTypeTerm: '', currentRestaurant: null, currentUser: null, viewedUser: null, signupModal: false}, action ) => {
   switch(action.type){
     case 'LOADRESTAURANTS':
       return {...state, restaurants: action.restaurants}
     case 'LOADCATEGORIES':
       return {...state, categories: action.categories}
+    case 'LOADUSERS':
+      return {...state, users: action.users}
     case 'SEARCHTYPECHANGE':
       return {...state, searchTypeTerm: action.inputString  }
     case 'SETCURRENTRESTAURANT':
@@ -25,6 +27,8 @@ const reducer = ( state = {restaurants: [], categories: [], searchTypeTerm: '', 
       return {...state, currentRestaurant: action.currentRestaurantWithReview}
     case 'TOGGLESIGNUPMODAL':
       return {...state, signupModal: !state.signupModal}
+    case 'SETVIEWEDUSER':
+      return {...state, viewedUser: action.inputUser }
     default:
       return state
   }

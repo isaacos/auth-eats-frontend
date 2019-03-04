@@ -38,8 +38,10 @@ class NavBar extends Component {
           <a> {`Hello ${this.props.currentUser.name}`} </a>
           :
           <li>
-            <a>Login </a>
+
             <a onClick={() => this.props.history.push('/signup')}>Signup</a>
+            <a onClick={() => this.props.history.push('/users')}>View Users</a>
+            <a onClick={() => this.props.history.push('/add-categories')}>Add Category</a>
             <form onSubmit={event => this.login(event)}>
               <input type='text' placeholder="email" onChange={event => this.setState({email: event.target.value})}/>
               <input type='password' placeholder="password" onChange={event => this.setState({password: event.target.value})}/>

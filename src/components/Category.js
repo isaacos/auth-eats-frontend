@@ -6,7 +6,8 @@ class Category extends Component {
 
   state = {
     selectedCategory: null,
-    selectedCategoryName: 'Click to choose the category you would like to add'
+    selectedCategoryName: 'Click to choose the category you would like to add',
+    description: ''
   }
 
   createCategoryUser = () =>{
@@ -20,7 +21,9 @@ class Category extends Component {
         },
         body: JSON.stringify({
           category_id: this.state.selectedCategory.id,
-          user_id: this.props.currentUser.id
+          user_id: this.props.currentUser.id,
+          description: this.state.description,
+          permission: false
         })
       })
       .then(r => r.json())
@@ -33,15 +36,19 @@ class Category extends Component {
     // add that category to categories list
     // add categories list to spread of current user
     // use the setCurrentUser from index
-    let category = this.props.categories.find(category => category.id === newCategoryUser.category_id)
-    let categories = [...this.props.currentUser.categories, category]
-    let user = {...this.props.currentUser, categories: categories}
-    this.props.setCurrentUser(user)
+
+    let categoriesusers = [...this.props.currentUser.category_user, newCategoryUser]
+    let newUser = {...this.props.currentUser, category_user: categoriesusers}
+    let newUsersList = this.props.users.map(user => {
+      if(user.id === newUser.id){
+        return newUser
+      } else {
+        return user
+      }
+    })
+    this.props.setCurrentUser(newUser)
+    this.props.loadusers(newUsersList)
   }
-
-
-
-
 
   render(){
     console.log(this.props.currentUser)
@@ -51,10 +58,11 @@ class Category extends Component {
 
 
         <div className="categories-list" >
-          {this.props.categories.map (category => <div><p id={category.id} onClick={() => this.setState({selectedCategory: category, selectedCategoryName: category.name})}>{category.name}</p></div>)}
+          {this.props.categories.map (category => <div key={category.name}><p id={category.id} onClick={() => this.setState({selectedCategory: category, selectedCategoryName: category.name})}>{category.name}</p></div>)}
         </div>
         <div>
         {this.state.selectedCategoryName}<br />
+        <input type="text" onChange={(event) => this.setState({description: event.target.value})}/>
         <Button onClick={() => this.createCategoryUser()}> Add the category </Button>
         </div>
       </div>
@@ -67,7 +75,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  setCurrentUser:  (user) => ({type: 'SETCURRENTUSER', user})
+  setCurrentUser:  (user) => ({type: 'SETCURRENTUSER', user}),
+  loadusers: (users) => ({type: 'LOADUSERS', users})
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);
