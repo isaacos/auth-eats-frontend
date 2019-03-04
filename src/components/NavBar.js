@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter} from "react-router-dom";
-import { Navbar, NavItem, Modal } from 'react-materialize';
+import { Navbar, NavItem, Modal, Button } from 'react-materialize';
 
 class NavBar extends Component {
 
@@ -31,23 +31,24 @@ class NavBar extends Component {
 
     return(
       <Navbar>
-        <NavItem onClick={() => {(this.props.history.push('/restaurants'))}}> Home</NavItem>
+        <NavItem onClick={() => {(this.props.history.push('/restaurants'))}}>Home</NavItem>
         <li><input type="text" onChange={(event) => this.props.searchInput(event.target.value)}/></li>
 
         {this.props.currentUser ?
-          <a> {`Hello ${this.props.currentUser.name}`} </a>
+          <ul>
+            <li className="navbar-li">{`Hello ${this.props.currentUser.name}`}</li>
+            <li className="navbar-li" onClick={() => this.props.history.push('/users')}><a>View Users</a></li>
+            <li className="navbar-li" onClick={() => this.props.history.push('/add-categories')}><a>Add Category</a></li>
+          </ul>
           :
-          <li>
-
-            <a onClick={() => this.props.history.push('/signup')}>Signup</a>
-            <a onClick={() => this.props.history.push('/users')}>View Users</a>
-            <a onClick={() => this.props.history.push('/add-categories')}>Add Category</a>
-            <form onSubmit={event => this.login(event)}>
-              <input type='text' placeholder="email" onChange={event => this.setState({email: event.target.value})}/>
-              <input type='password' placeholder="password" onChange={event => this.setState({password: event.target.value})}/>
-              <input type='submit' placeholder='submit' />
-            </form>
-          </li>
+          <ul>
+            <li className="navbar-li"><a onClick={() => this.props.history.push('/signup')}>Signup</a></li>
+              <form onSubmit={event => this.login(event)}>
+                <li className="login-form"><input type='text' placeholder="email" onChange={event => this.setState({email: event.target.value})}/></li>
+                <li className="login-form"><input type='password' placeholder="password" onChange={event => this.setState({password: event.target.value})}/></li>
+                <li><Button type='submit' placeholder='submit' >Login</Button></li>
+              </form>
+          </ul>
         }
       </Navbar>
     )

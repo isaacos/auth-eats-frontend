@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AuthenticReview from './AuthenticReview'
+import AuthenticReview from './AuthenticReview';
+import { Button } from 'react-materialize';
 
 class AuthenticReviewContainer extends Component {
 
@@ -17,7 +18,6 @@ class AuthenticReviewContainer extends Component {
   currentUserSharedCategory = () => {
     return this.props.currentUser.category_user.find( cu => {
       return this.props.currentRestaurant.categories.find( c => {
-
         return (cu.category_id === c.id && cu.permission === true)
       })
     })
@@ -75,9 +75,9 @@ class AuthenticReviewContainer extends Component {
         <h4>Authentic Reviews</h4>
         {this.canDisplayAuthenticReviewForm() ?
             <form onSubmit={event => this.submitHandler(event)}>
-            <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
-            <input type="number" placeholder="1 outa 5" onChange={event => this.setState({rating: event.target.value})}/>
-            <input type="submit" placeholder="submit" />
+              <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
+              <input type="number" placeholder="1 outa 5" onChange={event => this.setState({rating: event.target.value})}/>
+              <Button type="submit" placeholder="submit"> Post the Review </Button>
             </form>
           :
             <div></div>

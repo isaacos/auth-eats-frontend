@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button} from 'react-materialize'
+import { Button } from 'react-materialize'
 
 class Category extends Component {
 
@@ -61,9 +61,11 @@ class Category extends Component {
           {this.props.categories.map (category => <div key={category.name}><p id={category.id} onClick={() => this.setState({selectedCategory: category, selectedCategoryName: category.name})}>{category.name}</p></div>)}
         </div>
         <div>
+        <div className="category-description">
         {this.state.selectedCategoryName}<br />
         <input type="text" onChange={(event) => this.setState({description: event.target.value})}/>
         <Button onClick={() => this.createCategoryUser()}> Add the category </Button>
+        </div>
         </div>
       </div>
     )

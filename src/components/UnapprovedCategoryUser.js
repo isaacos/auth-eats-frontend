@@ -66,13 +66,9 @@ class UnapprovedCategoryUser extends Component {
     }
   }
 
-  //test this method with another user to check if it works!!!
   currentUserSharedCategoryUser = () => {
     return this.props.currentUser.category_user.find(cu => cu.category_id === this.props.category_user.category_id)
   }
-
-
-
 
   render(){
     return(

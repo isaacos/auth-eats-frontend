@@ -22,19 +22,30 @@
 }
 
 .restaurant-container {
-  float: right;
-  width: 80vmin;
-  border: solid;
   margin-top: 7vmin;
-  margin-right: 7vmin;
+}
+
+.category-description {
+  width: 20vmin;
+  display: inline-table;
 }
 
 .right {
   float: right;
+  padding-right: 5vmin;
+  padding-left: 20vmin;
+
 }
 
 .left {
   float: left;
+  padding-left: 5vmin;
+  padding-right:20vmin;
+}
+
+.login-form {
+  padding-left: 1vmin;
+  padding-right: 1vmin;
 }
 
 .review-card {
@@ -71,4 +82,12 @@
   margin-right: 15vmin;
   overflow-y: scroll;
   border: 3px solid black;
+}
+
+.categoryuser-container {
+  display:inline-flex;
+}
+
+.navbar-li {
+  padding-left: 4vmin;
 }

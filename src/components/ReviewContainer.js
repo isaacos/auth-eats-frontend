@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Review from './Review'
+import Review from './Review';
+import { Button } from 'react-materialize';
 
 class ReviewContainer extends Component {
 
@@ -78,9 +79,9 @@ class ReviewContainer extends Component {
       <h4>Generic Reviews</h4>
         {(this.canDisplayReviewForm()) ?
           <form onSubmit={event => this.submitHandler(event)}>
-          <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
-          <input type="number" placeholder="1 outa 5" onChange={event => this.setState({rating: event.target.value})}/>
-          <input type="submit" placeholder="submit" />
+            <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
+            <input type="number" placeholder="1 outa 5" onChange={event => this.setState({rating: event.target.value})}/>
+            <Button type="submit" placeholder="submit"> Post the Review </Button>
           </form>
           :
           <div></div>
