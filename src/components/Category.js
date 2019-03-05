@@ -60,9 +60,11 @@ class Category extends Component {
       <div>
         <h1> CATEGORY!!!!!! </h1>
 
-
+        <div>
         <div className="categories-list" >
+        <h5> categories to choose from:</h5>
           {this.props.categories.map (category => <div key={category.name}><p id={category.id} onClick={() => this.setState({selectedCategory: category, selectedCategoryName: category.name})}>{category.name}</p></div>)}
+        </div>
         </div>
         <div>
         <div className="category-description">

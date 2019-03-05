@@ -81,8 +81,10 @@
   float: right;
   margin-right: 15vmin;
   overflow-y: scroll;
-  border: 3px solid black;
+
 }
+
+
 
 .categoryuser-container {
   display:inline-flex;
@@ -117,4 +119,41 @@
   outline: none;
   box-shadow: 0 0 0 2pt rgb(236, 111, 117);
 
+}
+
+.card-holder {
+  height: 50vmin;
+  margin-bottom: 13vmin;
+}
+
+.card {
+  position: relative;
+  margin: .5rem 0 1rem 0;
+  background-color: #fff;
+  transition: box-shadow .25s;
+  border-radius: 2px;
+  height: 56vmin;
+  width: 158vmin;
+  display: inline-flex;
+}
+
+.card-image {
+
+  height: 100%;
+}
+
+
+.card .card-image img {
+  height: 100%;
+}
+
+.card-info {
+  margin-left: 20vmin;
+  margin-right: 15vmin;
+}
+
+.card.horizontal {
+  width: 84vmin;
+    height: 32vmin;
+    display: inline-flex;
 }

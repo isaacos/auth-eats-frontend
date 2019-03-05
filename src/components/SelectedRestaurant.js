@@ -17,11 +17,22 @@ getNonAuthenticReview = () => {
       {this.props.currentRestaurant
         ?
           <div>
-            <h1>
-              {this.props.currentRestaurant.name}
-              </h1>
-              <div>
-                {this.props.currentRestaurant.category}
+          <div className="card-holder">
+            <div className="card">
+              <div className="card-image">
+                <img src={this.props.currentRestaurant.image_url} />
+                </div>
+                <div className="card-info">
+                <h1>
+                  {this.props.currentRestaurant.name}
+                  </h1>
+                  <p>{this.props.currentRestaurant.location}</p>
+                  <p>Phone: {this.props.currentRestaurant.phone}</p>
+                  <ul>
+                    {this.props.currentRestaurant.categories.map(category => <li>{category.name}</li>)}
+                </ul>
+                </div>
+              </div>
               </div>
               <div className="categoryuser-container">
               <div className="reviewcontainer">
