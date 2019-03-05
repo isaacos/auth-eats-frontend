@@ -91,3 +91,30 @@
 .navbar-li {
   padding-left: 4vmin;
 }
+
+.textbox {
+  width: 47vmin;
+  height: 43vmin;
+  border-radius: 12px;
+}
+
+.signup-form {
+  width: 106vmin;
+  display: inline-block;
+}
+
+.reviewcontainer {
+  padding-left: 1vmin;
+  padding-right: 40vmin;
+}
+
+.authreviewcontainer {
+  padding-right: 1vmin;
+}
+
+.textbox:focus {
+  border-radius: 12px;
+  outline: none;
+  box-shadow: 0 0 0 2pt rgb(236, 111, 117);
+
+}

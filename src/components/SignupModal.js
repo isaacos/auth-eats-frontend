@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal } from 'react-materialize';
+import { Modal, Button } from 'react-materialize';
+import { withRouter} from "react-router-dom";
 
 class SignupModal extends Component {
   state = {
@@ -29,13 +30,13 @@ class SignupModal extends Component {
     })
     .then(r => r.json())
     .then(newUser => this.props.setCurrentUser(newUser))
-    this.props.toggleSignupModal()
+    this.props.history.push('/add-categories')
   }
 
 
   render(){
     return (
-      <div  >
+      <div className="signup-form">
 
         <form onSubmit={event => this.createUser(event)}>
           <input type="text" placeholder="name" onChange={event => this.setState({name: event.target.value})}/>
@@ -43,7 +44,7 @@ class SignupModal extends Component {
           <input type="text" placeholder="email" onChange={event => this.setState({email: event.target.value})}/>
           <input type="tel" placeholder="phone" onChange={event => this.setState({phone: event.target.value})}/>
           <input type="password" placeholder="password" onChange={event => this.setState({password: event.target.value})}/>
-          <input type="submit" placeholder="Make Account" />
+          <Button type="submit" placeholder="Make Account"> Make Your Account</Button>
         </form>
 
       </div>
@@ -60,4 +61,4 @@ const mapDispatchToProps = {
   setCurrentUser:  (user) => ({type: 'SETCURRENTUSER', user})
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupModal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignupModal));
