@@ -23,10 +23,9 @@ class ViewedUser extends Component {
         {this.props.viewedUser ?
           <div>
             <h1>{this.props.viewedUser.name}</h1>
-            <div>
+            <div className="categoryuser-container">
               <ApprovedCategoryUserContainer approvedCategoryUser={this.approvedCategoryUser()}/>
               <UnapprovedCategoryUserContainer unapprovedCategoryUser={this.unapprovedCategoryUser()}/>
-
             </div>
 
           </div>

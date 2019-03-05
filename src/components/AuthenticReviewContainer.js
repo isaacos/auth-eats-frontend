@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AuthenticReview from './AuthenticReview'
+import AuthenticReview from './AuthenticReview';
+import { Button } from 'react-materialize';
+import { Form } from 'react-bootstrap';
+import StarRatings from 'react-star-ratings';
 
 class AuthenticReviewContainer extends Component {
 
   state = {
-    rating: null,
+    rating: 2,
     body: '',
   }
 
@@ -17,7 +20,6 @@ class AuthenticReviewContainer extends Component {
   currentUserSharedCategory = () => {
     return this.props.currentUser.category_user.find( cu => {
       return this.props.currentRestaurant.categories.find( c => {
-
         return (cu.category_id === c.id && cu.permission === true)
       })
     })
@@ -65,8 +67,11 @@ class AuthenticReviewContainer extends Component {
     }
   }
 
-
-  // console.log(this.currentUserSharedCategory())
+  changeRating = ( newRating, name ) => {
+    this.setState({
+      rating: newRating
+    });
+  }
 
 
   render () {
@@ -75,9 +80,16 @@ class AuthenticReviewContainer extends Component {
         <h4>Authentic Reviews</h4>
         {this.canDisplayAuthenticReviewForm() ?
             <form onSubmit={event => this.submitHandler(event)}>
-            <input type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/>
-            <input type="number" placeholder="1 outa 5" onChange={event => this.setState({rating: event.target.value})}/>
-            <input type="submit" placeholder="submit" />
+              <Form.Control as="textarea" rows="3" className="textbox" type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/> <br />
+              <StarRatings
+              rating={this.state.rating}
+              starRatedColor="gold"
+              changeRating={this.changeRating}
+              numberOfStars={5}
+              starDimension="3vmin"
+              name='rating'
+              />  <br />
+              <Button type="submit" placeholder="submit"> Post the Review </Button>
             </form>
           :
             <div></div>

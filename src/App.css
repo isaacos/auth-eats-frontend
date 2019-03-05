@@ -22,19 +22,30 @@
 }
 
 .restaurant-container {
-  float: right;
-  width: 80vmin;
-  border: solid;
   margin-top: 7vmin;
-  margin-right: 7vmin;
+}
+
+.category-description {
+  width: 20vmin;
+  display: inline-table;
 }
 
 .right {
   float: right;
+  padding-right: 5vmin;
+  padding-left: 20vmin;
+
 }
 
 .left {
   float: left;
+  padding-left: 5vmin;
+  padding-right:20vmin;
+}
+
+.login-form {
+  padding-left: 1vmin;
+  padding-right: 1vmin;
 }
 
 .review-card {
@@ -71,4 +82,39 @@
   margin-right: 15vmin;
   overflow-y: scroll;
   border: 3px solid black;
+}
+
+.categoryuser-container {
+  display:inline-flex;
+}
+
+.navbar-li {
+  padding-left: 4vmin;
+}
+
+.textbox {
+  width: 47vmin;
+  height: 43vmin;
+  border-radius: 12px;
+}
+
+.signup-form {
+  width: 106vmin;
+  display: inline-block;
+}
+
+.reviewcontainer {
+  padding-left: 1vmin;
+  padding-right: 40vmin;
+}
+
+.authreviewcontainer {
+  padding-right: 1vmin;
+}
+
+.textbox:focus {
+  border-radius: 12px;
+  outline: none;
+  box-shadow: 0 0 0 2pt rgb(236, 111, 117);
+
 }

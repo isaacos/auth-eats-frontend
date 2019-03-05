@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-materialize';
+import StarRatings from 'react-star-ratings';
 
 
 class Review extends Component {
@@ -8,6 +9,12 @@ class Review extends Component {
     body: this.props.review.body,
     rating: this.props.review.rating
   }
+
+  changeRating = ( newRating, name ) => {
+  this.setState({
+    rating: newRating
+  });
+}
 
   delete = () => {
     fetch(`http://localhost:3000/api/v1/reviews/${this.props.review.id}`, {
@@ -79,14 +86,28 @@ class Review extends Component {
             {this.props.review.body}
           </div>
           <div>
-            {this.props.review.rating}
+          <StarRatings
+          rating={this.props.review.rating}
+          starRatedColor="#df565a"
+          numberOfStars={5}
+          starDimension="3vmin"
+          name='rating'
+        />  <br />
+
           </div>
             {this.props.currentUser && this.props.currentUser.id === this.props.review.user.id ?
             <div>
               <div>
                 <form onSubmit={event => this.edit(event)}>
                     <input type="text" value={this.state.body} onChange={(event) => this.setState({body: event.target.value})}/>
-                    <input type="number" value={this.state.rating} onChange={(event) => this.setState({rating: event.target.value})}/>
+                    <StarRatings
+                    rating={this.state.rating}
+                    starRatedColor="#df565a"
+                    changeRating={this.changeRating}
+                    numberOfStars={5}
+                    starDimension="3vmin"
+                    name='rating'
+                  />  <br />
                     <input type="submit" value="Edit"/>
                 </form>
               </div>

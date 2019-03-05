@@ -23,11 +23,13 @@ getNonAuthenticReview = () => {
               <div>
                 {this.props.currentRestaurant.category}
               </div>
-              <div className="right">
+              <div className="categoryuser-container">
+              <div className="reviewcontainer">
                 <ReviewContainer reviews={this.props.currentRestaurant.reviews}/>
               </div>
-              <div className="left">
+              <div className="authreviewcontainer">
                 <AuthenticReviewContainer reviews={this.props.currentRestaurant.reviews}/>
+              </div>
               </div>
             </div>
         :

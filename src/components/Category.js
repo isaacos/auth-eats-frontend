@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button} from 'react-materialize'
+import { Button } from 'react-materialize'
+import { Form } from 'react-bootstrap';
 
 class Category extends Component {
 
@@ -12,7 +13,6 @@ class Category extends Component {
 
   createCategoryUser = () =>{
     if(this.props.currentUser && this.state.selectedCategory){
-
       fetch('http://localhost:3000/api/v1/category_users', {
         method: 'POST',
         headers: {
@@ -29,6 +29,7 @@ class Category extends Component {
       .then(r => r.json())
       .then(data => this.addCategoryToCurrentUser(data))
     }
+
   }
 
   addCategoryToCurrentUser = (newCategoryUser) => {
@@ -48,6 +49,9 @@ class Category extends Component {
     })
     this.props.setCurrentUser(newUser)
     this.props.loadusers(newUsersList)
+    //for the redirect to show the user it logged
+    this.props.setViewedUser(this.props.currentUser)
+    this.props.history.push(`/users/${this.props.currentUser.id}`)
   }
 
   render(){
@@ -61,9 +65,11 @@ class Category extends Component {
           {this.props.categories.map (category => <div key={category.name}><p id={category.id} onClick={() => this.setState({selectedCategory: category, selectedCategoryName: category.name})}>{category.name}</p></div>)}
         </div>
         <div>
+        <div className="category-description">
         {this.state.selectedCategoryName}<br />
-        <input type="text" onChange={(event) => this.setState({description: event.target.value})}/>
+        <Form.Control as="textarea" rows="3" className="textbox" onChange={(event) => this.setState({description: event.target.value})}/>
         <Button onClick={() => this.createCategoryUser()}> Add the category </Button>
+        </div>
         </div>
       </div>
     )
@@ -76,7 +82,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   setCurrentUser:  (user) => ({type: 'SETCURRENTUSER', user}),
-  loadusers: (users) => ({type: 'LOADUSERS', users})
+  loadusers: (users) => ({type: 'LOADUSERS', users}),
+  setViewedUser: (inputUser) => ({type: 'SETVIEWEDUSER', inputUser})
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);
