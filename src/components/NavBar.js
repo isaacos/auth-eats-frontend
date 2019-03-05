@@ -46,7 +46,7 @@ class NavBar extends Component {
               <form onSubmit={event => this.login(event)}>
                 <li className="login-form"><input type='text' placeholder="email" onChange={event => this.setState({email: event.target.value})}/></li>
                 <li className="login-form"><input type='password' placeholder="password" onChange={event => this.setState({password: event.target.value})}/></li>
-                <li><Button type='submit' placeholder='submit' >Login</Button></li>
+                <li><Button type='submit' placeholder='submit'>Login</Button></li>
               </form>
           </ul>
         }

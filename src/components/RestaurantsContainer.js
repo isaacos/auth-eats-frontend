@@ -10,9 +10,17 @@ class RestaurantsContainer extends Component {
   }
 
 filteredCategory = () => {
-  let filteredRestaurants = this.props.restaurants.filter(restaurant =>
-    restaurant.category.includes(this.props.searchTypeTerm.toLowerCase())
-  )
+  let filteredRestaurants = this.props.restaurants.filter(restaurant => {
+      //creates array of categories filtered by category name
+      //if no category name includes the searchTypeTerm it returns an empty array
+      //uses the length of array r and if it is greater than 0 returns the restaurant
+      //runs restaurant.name includes with the search term also
+    let r = restaurant.categories.filter(category => category.name.toLowerCase().includes(this.props.searchTypeTerm.toLowerCase())).length
+
+    return (restaurant.name.toLowerCase().includes(this.props.searchTypeTerm.toLowerCase()) || r > 0)
+
+
+  })
   return filteredRestaurants
 }
 

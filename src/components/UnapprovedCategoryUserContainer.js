@@ -8,7 +8,6 @@ class UnapprovedCategoryUserContainer extends Component {
 
 
   render(){
-    console.log(this.props)
     return(
       <div className="right">
       {this.props.unapprovedCategoryUser.map(category_user => {
