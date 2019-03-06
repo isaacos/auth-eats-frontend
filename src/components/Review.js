@@ -108,7 +108,7 @@ class Review extends Component {
                     starDimension="3vmin"
                     name='rating'
                   />  <br />
-                    <input type="submit" value="Edit"/>
+                    <Button type="submit" value="Edit">Edit</Button>
                 </form>
               </div>
               <Button waves='light' onClick={() => this.delete()}> Delete</Button>
