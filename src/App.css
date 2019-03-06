@@ -74,6 +74,10 @@
   margin-top: -1.4vmin;
 }
 
+.h3-title:hover {
+  color: rgb(46,160,149);
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -85,6 +89,11 @@
 
 .hidden {
   display: none;
+}
+
+.delete-button {
+  margin-top: 1vmin;
+  margin-bottom: 1vmin;
 }
 
 .categories-list {

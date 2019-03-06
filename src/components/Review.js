@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-materialize';
 import StarRatings from 'react-star-ratings';
+import { Form } from 'react-bootstrap';
 
 
 class Review extends Component {
   state = {
     body: this.props.review.body,
-    rating: this.props.review.rating
+    rating: this.props.review.rating,
+    edit: false
   }
 
   changeRating = ( newRating, name ) => {
@@ -98,8 +100,9 @@ class Review extends Component {
             {this.props.currentUser && this.props.currentUser.id === this.props.review.user.id ?
             <div>
               <div>
+              <div className={this.state.edit ? 'non' : "hidden"}>
                 <form onSubmit={event => this.edit(event)}>
-                    <input type="text" value={this.state.body} onChange={(event) => this.setState({body: event.target.value})}/>
+                    <Form.Control as="textarea" rows="3" className="textbox" value={this.state.body} onChange={(event) => this.setState({body: event.target.value})}/><br />
                     <StarRatings
                     rating={this.state.rating}
                     starRatedColor="#df565a"
@@ -110,8 +113,10 @@ class Review extends Component {
                   />  <br />
                     <Button type="submit" value="Edit">Edit</Button>
                 </form>
+                <Button className="delete-button" waves='light' onClick={() => this.delete()}> Delete</Button>
               </div>
-              <Button waves='light' onClick={() => this.delete()}> Delete</Button>
+                <Button onClick={() => this.setState({edit: !this.state.edit})}>{this.state.edit ? 'Close Form' : 'Make a change'}</Button>
+              </div>
             </div>
             :
             <div></div>

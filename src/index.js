@@ -22,6 +22,11 @@ const reducer = ( state = {restaurants: [], categories: [], users: [], searchTyp
     case 'SETCURRENTRESTAURANT':
       return {...state, currentRestaurant: action.inputRestaurant}
     case 'SETCURRENTUSER':
+      console.log(action.user)
+      if(action.user.error){
+        alert('There was an issue with your login! Please try again')
+        return {...state, currentUser: null}
+      }
       return {...state, currentUser: action.user}
     case 'ADDREVIEW':
       return {...state, currentRestaurant: action.currentRestaurantWithReview}
