@@ -23,6 +23,7 @@
 
 .restaurant-container {
   margin-top: 7vmin;
+  display: inline;
 }
 
 .category-description {
@@ -60,6 +61,17 @@
 
 .contained-image {
   width: 30vmin;
+  margin-bottom: 4vmin;
+  float: left;
+}
+
+.inner-card-rest {
+  display: table-column;
+}
+
+.h3-title {
+  padding-top: 1vmin;
+  margin-top: -1.4vmin;
 }
 
 @keyframes App-logo-spin {
@@ -82,6 +94,10 @@
   margin-right: 15vmin;
   overflow-y: scroll;
 
+}
+
+.stars-categories {
+  display: inline-grid;
 }
 
 
@@ -138,10 +154,17 @@
 }
 
 .card-image {
-
   height: 100%;
 }
 
+.card-restaurant {
+  border-bottom: 2px dotted grey;
+  margin-top: 5vmin;
+  margin-bottom: 1vmin;
+  margin-left: 30vmin;
+  margin-right: 30vmin;
+  display: grid;
+}
 
 .card .card-image img {
   height: 100%;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StarRatings from 'react-star-ratings';
+import { Button } from 'react-materialize';
 
 
 class AuthenticReview extends Component {
@@ -107,10 +108,10 @@ class AuthenticReview extends Component {
                 starDimension="3vmin"
                 name='rating'
                 />  <br />
-                <input type="submit" value="Edit"/>
+                <Button type="submit" value="Edit">Edit</Button>
               </form>
             </div>
-            <button onClick={() => this.delete()}> Delete</button>
+            <Button onClick={() => this.delete()}> Delete</Button>
           </div>
         :
           <div></div>

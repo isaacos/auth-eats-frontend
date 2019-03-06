@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Restaurant from './Restaurant'
+import Restaurant from './Restaurant';
+import { Button } from 'react-materialize';
 
 class RestaurantsContainer extends Component {
 
@@ -29,7 +30,7 @@ filteredCategory = () => {
       <div className="restaurant-container">
       {this.filteredCategory().slice(this.state.sliceStart, this.state.sliceEnd).map(restaurant =>
           <Restaurant key={restaurant.slug} history={this.props.history} restaurant={restaurant} />)}
-          <button onClick={() => this.setState({sliceStart: this.state.sliceStart + 10, sliceEnd: this.state.sliceEnd + 10})}>Next 10</button>
+          <Button onClick={() => this.setState({sliceStart: this.state.sliceStart + 10, sliceEnd: this.state.sliceEnd + 10})}>Next 10</Button>
       </div>
     )
   }
