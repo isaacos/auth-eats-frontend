@@ -27,13 +27,13 @@ class NavBar extends Component {
     .then(data => this.props.setCurrentUser(data))
   }
 
+
   render () {
 
     return(
       <Navbar>
         <NavItem onClick={() => {(this.props.history.push('/restaurants'))}}>Home</NavItem>
         <li><input type="text" onChange={(event) => this.props.searchInput(event.target.value)}/></li>
-
         {this.props.currentUser ?
           <ul>
             <li className="navbar-li">{`Hello ${this.props.currentUser.name}`}</li>

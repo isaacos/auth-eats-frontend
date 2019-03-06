@@ -23,7 +23,6 @@ class Restaurant extends Component {
   arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
 
   render () {
-    console.log(this.averagesStarRating(false))
     return(
       <div className="card-restaurant">
         <div className="inner-card-rest">
@@ -37,7 +36,6 @@ class Restaurant extends Component {
           <ul>
             {this.props.restaurant.categories.map(category => <li key={category.id}>{category.name}</li>)}
           </ul>
-
           {this.averagesStarRating(false)?
             <div><StarRatings
             rating={this.averagesStarRating(false)}
@@ -86,9 +84,6 @@ class Restaurant extends Component {
             name='rating'
             /></div>
           }
-
-
-
           </div>
         </div>
       </div>
