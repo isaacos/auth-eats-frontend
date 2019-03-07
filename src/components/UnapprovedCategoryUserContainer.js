@@ -10,6 +10,7 @@ class UnapprovedCategoryUserContainer extends Component {
   render(){
     return(
       <div className="right">
+      <h3>Unapproved Categories</h3>
       {this.props.unapprovedCategoryUser.map(category_user => {
         return <UnapprovedCategoryUser key={category_user.id} category_user={category_user} />
       })}

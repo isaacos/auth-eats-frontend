@@ -11,6 +11,7 @@ class ApprovedCategoryUserContainer extends Component {
     console.log(this.props)
     return(
       <div className="left">
+      <h3>Approved Categories</h3>
       {this.props.approvedCategoryUser.map(category_user => {
         return <ApprovedCategoryUser key={category_user.id} category_user={category_user} />
       })}

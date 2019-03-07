@@ -69,7 +69,7 @@ class Category extends Component {
         <div>
         <div className="category-description">
         {this.state.selectedCategoryName}<br />
-        <Form.Control as="textarea" rows="3" className="textbox" onChange={(event) => this.setState({description: event.target.value})}/>
+        <Form.Control as="textarea" rows="3" className="textbox" placeholder="Explain why you are qualified. Previous experience or a recipe post here!" onChange={(event) => this.setState({description: event.target.value})}/>
         <Button onClick={() => this.createCategoryUser()}> Add the category </Button>
         </div>
         </div>

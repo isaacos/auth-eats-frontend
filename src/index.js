@@ -26,8 +26,10 @@ const reducer = ( state = {restaurants: [], categories: [], users: [], searchTyp
       if(action.user.error){
         alert('There was an issue with your login! Please try again')
         return {...state, currentUser: null}
-      }
+        }
       return {...state, currentUser: action.user}
+    case 'LOGOUT':
+      return {...state, currentUser: null}
     case 'ADDREVIEW':
       return {...state, currentRestaurant: action.currentRestaurantWithReview}
     case 'TOGGLESIGNUPMODAL':

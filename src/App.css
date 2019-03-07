@@ -128,6 +128,8 @@
 .signup-form {
   width: 106vmin;
   display: inline-block;
+  margin-left: 30vmin;
+  margin-right: 30vmin;
 }
 
 .reviewcontainer {
@@ -159,6 +161,7 @@
   border-radius: 2px;
   height: 56vmin;
   width: 158vmin;
+  margin-right: 15vmin;
   display: inline-flex;
 }
 
@@ -188,4 +191,8 @@
   width: 84vmin;
     height: 32vmin;
     display: inline-flex;
+}
+
+.previous-btn {
+  margin-right: 2vmin;
 }
