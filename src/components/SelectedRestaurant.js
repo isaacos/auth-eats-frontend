@@ -23,9 +23,9 @@ getNonAuthenticReview = () => {
                 <img src={this.props.currentRestaurant.image_url} />
                 </div>
                 <div className="card-info">
-                <h1>
+                <h3>
                   {this.props.currentRestaurant.name}
-                  </h1>
+                  </h3>
                   <p>{this.props.currentRestaurant.location}</p>
                   <p>Phone: {this.props.currentRestaurant.phone}</p>
                   <ul>

@@ -29,8 +29,14 @@ class SignupModal extends Component {
       })
     })
     .then(r => r.json())
-    .then(newUser => this.props.setCurrentUser(newUser))
+    .then(newUser => this.addNewUser(newUser))
     this.props.history.push('/add-categories')
+  }
+
+  addNewUser =(newUser) => {
+    this.props.setCurrentUser(newUser)
+    let users = [...this.props.users, newUser]
+    this.props.loadusers(users)
   }
 
 
@@ -58,7 +64,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   toggleSignupModal: () => ({type: 'TOGGLESIGNUPMODAL'}),
-  setCurrentUser:  (user) => ({type: 'SETCURRENTUSER', user})
+  setCurrentUser:  (user) => ({type: 'SETCURRENTUSER', user}),
+  loadusers: (users) => ({type: 'LOADUSERS', users}),
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignupModal));

@@ -29,15 +29,21 @@ class NavBar extends Component {
 
 
   render () {
-
+    console.log(this.props.history.location.pathname)
     return(
       <Navbar>
         <NavItem onClick={() => {(this.props.history.push('/restaurants'))}}>Home</NavItem>
-        <li><input type="text" onChange={(event) => this.props.searchInput(event.target.value)}/></li>
+        {(this.props.history.location.pathname === '/restaurants') ?
+        <li><input type="text" placeholder="Search Restaurants" onChange={(event) => this.props.searchInput(event.target.value)}/></li>
+        :
+        <li></li>
+      }
         {this.props.currentUser ?
           <ul>
             <li className="navbar-li">{`Hello ${this.props.currentUser.name}`}</li>
+            <li className="navbar-li" onClick={() => this.props.logout()}> Logout </li>
             <li className="navbar-li" onClick={() => this.props.history.push('/users')}><a>View Users</a></li>
+
             <li className="navbar-li" onClick={() => this.props.history.push('/add-categories')}><a>Add Category</a></li>
           </ul>
           :
@@ -62,7 +68,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps =  {
   searchInput: (inputString) => ({type: 'SEARCHTYPECHANGE', inputString}),
   setCurrentUser:  (user) => ({type: 'SETCURRENTUSER', user}),
-  toggleSignupModal: () => ({type: 'TOGGLESIGNUPMODAL'})
+  toggleSignupModal: () => ({type: 'TOGGLESIGNUPMODAL'}),
+  logout: () => ({type: 'LOGOUT'})
+
 
 }
 
