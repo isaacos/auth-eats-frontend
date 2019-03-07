@@ -25,7 +25,7 @@ class UnapprovedCategoryUser extends Component {
       })
     })
     .then(r => r.json())
-    .then(category_user => this.updateViewedUserAndList(category_user))
+    .then(category_user => this.updateViewedUser(category_user))
   }
 
   updateViewedUser = (newCategoryUser) => {
@@ -38,13 +38,14 @@ class UnapprovedCategoryUser extends Component {
     })
     let newViewedUser = {...this.props.viewedUser, category_user: newCategoryUserList }
     this.props.setViewedUser(newViewedUser)
+    this.updateUsersList(newViewedUser)
 
   }
 
-  updateUsersList = () => {
+  updateUsersList = (newViewedUser) => {
       const newUsersList= this.props.users.map(user => {
-        if(user.id === this.props.viewedUser.id){
-          return this.props.viewedUser
+        if(user.id === newViewedUser.id){
+          return newViewedUser
         } else {
           return user
         }

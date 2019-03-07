@@ -60,9 +60,9 @@ class Restaurant extends Component {
             name='rating'
             /></div>
           }
-          {this.averagesStarRating(false)?
+          {this.averagesStarRating(true)?
             <div><StarRatings
-            rating={this.averagesStarRating(false)}
+            rating={this.averagesStarRating(true)}
             starRatedColor="gold"
             numberOfStars={5}
             starDimension="3vmin"

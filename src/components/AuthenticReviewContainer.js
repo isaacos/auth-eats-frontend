@@ -15,6 +15,14 @@ class AuthenticReviewContainer extends Component {
   CopyCurrentRestuarantWithNewReview = (newReview) => {
     let reviews = [newReview, ...this.props.currentRestaurant.reviews]
     this.props.addReview({...this.props.currentRestaurant, reviews: reviews})
+    let newRestaurants = this.props.restaurants.map(restaurant => {
+      if(restaurant.id === this.props.currentRestaurant.id){
+        return this.props.currentRestaurant
+      } else {
+        return restaurant
+      }
+    })
+    this.props.loadrestaurant(newRestaurants)
   }
 
   currentUserSharedCategory = () => {
@@ -111,7 +119,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   addReview: (currentRestaurantWithReview) => ({type: 'ADDREVIEW', currentRestaurantWithReview}),
-  setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant})
+  setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant}),
+  loadrestaurant: (restaurants) => ({type: 'LOADRESTAURANTS', restaurants})
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthenticReviewContainer);
