@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-materialize'
 import { Form } from 'react-bootstrap';
+import Select from 'react-select';
 
 class Category extends Component {
 
@@ -54,24 +55,28 @@ class Category extends Component {
     this.props.history.push(`/users/${this.props.currentUser.id}`)
   }
 
+
   render(){
     console.log(this.props.currentUser)
+    const { selectedOption } = this.state;
     return (
       <div>
         <h1> CATEGORY!!!!!! </h1>
-
         <div>
-        <div className="categories-list" >
-        <h5> categories to choose from:</h5>
-          {this.props.categories.map (category => <div key={category.name}><p id={category.id} onClick={() => this.setState({selectedCategory: category, selectedCategoryName: category.name})}>{category.name}</p></div>)}
-        </div>
-        </div>
-        <div>
-        <div className="category-description">
-        {this.state.selectedCategoryName}<br />
-        <Form.Control as="textarea" rows="3" className="textbox" placeholder="Explain why you are qualified. Previous experience or a recipe post here!" onChange={(event) => this.setState({description: event.target.value})}/>
-        <Button onClick={() => this.createCategoryUser()}> Add the category </Button>
-        </div>
+          <div className="categories-list" >
+            <h5> categories to choose from:</h5>
+            <Select
+            value={ selectedOption }
+            options={this.props.categories.map(category => {return {value: category, label: category.name}})}
+            onChange={val =>this.setState({selectedCategory: val.value, selectedCategoryName: val.value.name})}/>
+            </div>
+          </div>
+          <div>
+            <div className="category-description">
+            {this.state.selectedCategoryName}<br />
+            <Form.Control as="textarea" rows="3" className="textbox" placeholder="Explain why you are qualified. Previous experience or a recipe post here!" onChange={(event) => this.setState({description: event.target.value})}/>
+            <Button onClick={() => this.createCategoryUser()}> Add the category </Button>
+          </div>
         </div>
       </div>
     )
