@@ -6,10 +6,9 @@ import { Form } from 'react-bootstrap';
 import StarRatings from 'react-star-ratings';
 
 class AuthenticReviewContainer extends Component {
-
   state = {
     rating: 2,
-    body: '',
+    body: ''
   }
 
   CopyCurrentRestuarantWithNewReview = (newReview) => {
@@ -60,7 +59,6 @@ class AuthenticReviewContainer extends Component {
           return review.user.id === this.props.currentUser.id
       })
     }
-
     if(foundReview === undefined){
       foundReview = null
     }
@@ -68,7 +66,7 @@ class AuthenticReviewContainer extends Component {
   }
 
   canDisplayAuthenticReviewForm = () =>{
-    if(this.props.currentUser && !this.findUserReview() ){
+    if(this.props.currentUser && !this.findUserReview()){
       if(this.currentUserSharedCategory()){
         return true
       }
@@ -88,21 +86,27 @@ class AuthenticReviewContainer extends Component {
         <h4>Authentic Reviews</h4>
         {this.canDisplayAuthenticReviewForm() ?
             <form onSubmit={event => this.submitHandler(event)}>
-              <Form.Control as="textarea" rows="3" className="textbox" type="text" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/> <br />
+              <Form.Control
+                as="textarea"
+                rows="3"
+                className="textbox"
+                type="text"
+                placeholder="what did you think?"
+                onChange={event => this.setState({body: event.target.value})}
+              /> <br />
               <StarRatings
-              rating={this.state.rating}
-              starRatedColor="gold"
-              changeRating={this.changeRating}
-              numberOfStars={5}
-              starDimension="3vmin"
-              name='rating'
+                rating={this.state.rating}
+                starRatedColor="gold"
+                changeRating={this.changeRating}
+                numberOfStars={5}
+                starDimension="3vmin"
+                name='rating'
               />  <br />
               <Button type="submit" placeholder="submit"> Post the Review </Button>
             </form>
           :
             <div></div>
         }
-
         {this.props.reviews.map(review => {
           if(review.authentic === true){
               return <AuthenticReview key={review.id} review={review} />

@@ -12,9 +12,8 @@ class ApprovedCategoryUser extends Component {
   render(){
     return(
       <div >
-      <h4> {this.getCategoryName()}</h4>
-      {this.props.category_user.description}
-
+        <h4> {this.getCategoryName()}</h4>
+        {this.props.category_user.description}
       </div>
     )
   }

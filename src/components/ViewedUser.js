@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import  ApprovedCategoryUser  from './ApprovedCategoryUser';
-import UnapprovedCategoryUser from './UnapprovedCategoryUser';
 import  ApprovedCategoryUserContainer  from './ApprovedCategoryUserContainer';
 import  UnapprovedCategoryUserContainer  from './UnapprovedCategoryUserContainer';
 
@@ -17,7 +15,6 @@ class ViewedUser extends Component {
   }
 
   render(){
-    console.log(this.props.viewedUser)
     return(
       <div>
         {this.props.viewedUser ?
@@ -27,7 +24,6 @@ class ViewedUser extends Component {
               <ApprovedCategoryUserContainer approvedCategoryUser={this.approvedCategoryUser()}/>
               <UnapprovedCategoryUserContainer unapprovedCategoryUser={this.unapprovedCategoryUser()}/>
             </div>
-
           </div>
         :
           <div>

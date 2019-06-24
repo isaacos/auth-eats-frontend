@@ -51,14 +51,11 @@ class ReviewContainer extends Component {
 
   findUserReview = () => {
     let foundReview = null
-
     if(this.props.currentUser){
-
       foundReview = this.props.currentRestaurant.reviews.find(review => {
           return review.user.id === this.props.currentUser.id
       })
     }
-
     if(foundReview === undefined){
       foundReview = null
     }
@@ -74,7 +71,7 @@ class ReviewContainer extends Component {
   }
 
   canDisplayReviewForm = () => {
-    if(this.props.currentUser && !this.findUserReview() ){
+    if(this.props.currentUser && !this.findUserReview()){
       if(this.currentUserSharedCategory() === undefined){
         return true
       }
@@ -84,32 +81,29 @@ class ReviewContainer extends Component {
   changeRating = ( newRating, name ) => {
     this.setState({
       rating: newRating
-    });
+    })
   }
-
-
 
   render () {
     return(
       <div>
-      <h4>Generic Reviews</h4>
-        {(this.canDisplayReviewForm()) ?
-          <form onSubmit={event => this.submitHandler(event)}>
-            <Form.Control as="textarea" rows="3" className="textbox" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/> <br />
-            <StarRatings
-            rating={this.state.rating}
-            starRatedColor="#df565a"
-            changeRating={this.changeRating}
-            numberOfStars={5}
-            starDimension="3vmin"
-            name='rating'
-          />  <br />
-            <Button type="submit" placeholder="submit"> Post the Review </Button>
-          </form>
+        <h4>Generic Reviews</h4>
+          {(this.canDisplayReviewForm()) ?
+            <form onSubmit={event => this.submitHandler(event)}>
+              <Form.Control as="textarea" rows="3" className="textbox" placeholder="what did you think?" onChange={event => this.setState({body: event.target.value})}/> <br />
+              <StarRatings
+              rating={this.state.rating}
+              starRatedColor="#df565a"
+              changeRating={this.changeRating}
+              numberOfStars={5}
+              starDimension="3vmin"
+              name='rating'
+              />  <br />
+              <Button type="submit" placeholder="submit"> Post the Review </Button>
+            </form>
           :
           <div></div>
         }
-
         {this.props.reviews.map(review => {
           if(review.authentic === false){
               return <Review key={review.id} review={review} />

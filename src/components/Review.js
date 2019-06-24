@@ -27,7 +27,6 @@ class Review extends Component {
   }
 
   edit = event => {
-
     event.preventDefault()
     fetch(`http://localhost:3000/api/v1/reviews/${this.props.review.id}`, {
       method: 'PATCH',
@@ -43,10 +42,8 @@ class Review extends Component {
         authentic: false
       })
     })
-
     .then(r => r.json())
     .then(data => this.updateReview(data))
-
   }
 
   updateReview = editedReview => {
@@ -61,7 +58,6 @@ class Review extends Component {
   }
 
   updateOrDeleteReview = (updatedReviews) => {
-
     let updatedRestaurant = {...this.props.currentRestaurant, reviews: updatedReviews}
     let updatedRestaurantList = this.props.restaurants.map(restaurant => {
       if(restaurant.id === updatedRestaurant.id){
@@ -76,7 +72,7 @@ class Review extends Component {
 
 
   removedReview = (deletedReview) => {
-    let updatedReviews = this.props.currentRestaurant.reviews.filter( review => review.id !== deletedReview.id)
+    let updatedReviews = this.props.currentRestaurant.reviews.filter(review => review.id !== deletedReview.id)
     this.updateOrDeleteReview(updatedReviews)
   }
 
@@ -88,39 +84,44 @@ class Review extends Component {
             {this.props.review.body}
           </div>
           <div>
-          <StarRatings
-          rating={this.props.review.rating}
-          starRatedColor="#df565a"
-          numberOfStars={5}
-          starDimension="3vmin"
-          name='rating'
-        />  <br />
-
+            <StarRatings
+              rating={this.props.review.rating}
+              starRatedColor="#df565a"
+              numberOfStars={5}
+              starDimension="3vmin"
+              name='rating'
+            />  <br />
           </div>
             {this.props.currentUser && this.props.currentUser.id === this.props.review.user.id ?
-            <div>
               <div>
-              <div className={this.state.edit ? 'non' : "hidden"}>
-                <form onSubmit={event => this.edit(event)}>
-                    <Form.Control as="textarea" rows="3" className="textbox" value={this.state.body} onChange={(event) => this.setState({body: event.target.value})}/><br />
-                    <StarRatings
-                    rating={this.state.rating}
-                    starRatedColor="#df565a"
-                    changeRating={this.changeRating}
-                    numberOfStars={5}
-                    starDimension="3vmin"
-                    name='rating'
-                  />  <br />
-                    <Button type="submit" value="Edit">Edit</Button>
-                </form>
-                <Button className="delete-button" waves='light' onClick={() => this.delete()}> Delete</Button>
-              </div>
-                <Button onClick={() => this.setState({edit: !this.state.edit})}>{this.state.edit ? 'Close Form' : 'Make a change'}</Button>
+                <div>
+                  <div className={this.state.edit ? 'non' : "hidden"}>
+                    <form onSubmit={event => this.edit(event)}>
+                        <Form.Control
+                            as="textarea"
+                            rows="3"
+                            className="textbox"
+                            value={this.state.body}
+                            onChange={(event) => this.setState({body: event.target.value})}
+                        /><br />
+                        <StarRatings
+                            rating={this.state.rating}
+                            starRatedColor="#df565a"
+                            changeRating={this.changeRating}
+                            numberOfStars={5}
+                            starDimension="3vmin"
+                            name='rating'
+                        />  <br />
+                        <Button type="submit" value="Edit">Edit</Button>
+                    </form>
+                  <Button className="delete-button" waves='light' onClick={() => this.delete()}> Delete</Button>
+                </div>
+                  <Button onClick={() => this.setState({edit: !this.state.edit})}>{this.state.edit ? 'Close Form' : 'Make a change'}</Button>
               </div>
             </div>
-            :
+          :
             <div></div>
-            }
+          }
         </div>
       </div>
     )
