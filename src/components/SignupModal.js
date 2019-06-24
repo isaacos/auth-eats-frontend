@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button } from 'react-materialize';
+import { Button } from 'react-materialize';
 import { withRouter} from "react-router-dom";
 
 class SignupModal extends Component {
@@ -43,7 +43,6 @@ class SignupModal extends Component {
   render(){
     return (
       <div className="signup-form">
-
         <form onSubmit={event => this.createUser(event)}>
           <input type="text" placeholder="name" onChange={event => this.setState({name: event.target.value})}/>
           <input type="text" placeholder="nationality" onChange={event => this.setState({nationality: event.target.value})}/>
@@ -52,7 +51,6 @@ class SignupModal extends Component {
           <input type="password" placeholder="password" onChange={event => this.setState({password: event.target.value})}/>
           <Button type="submit" placeholder="Make Account"> Make Your Account</Button>
         </form>
-
       </div>
     )
   }

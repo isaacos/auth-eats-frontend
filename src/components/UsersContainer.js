@@ -7,7 +7,7 @@ class UsersContainer extends Component {
   render(){
     return(
       <div>
-      {this.props.users.map(user => <User key={user.email} user={user}/>)}
+        {this.props.users.map(user => <User key={user.email} user={user}/>)}
       </div>
     )
   }

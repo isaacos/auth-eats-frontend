@@ -27,7 +27,6 @@ class AuthenticReview extends Component {
   }
 
   edit = event => {
-
     event.preventDefault()
     fetch(`http://localhost:3000/api/v1/reviews/${this.props.review.id}`, {
       method: 'PATCH',
@@ -43,10 +42,8 @@ class AuthenticReview extends Component {
         authentic: true
       })
     })
-
     .then(r => r.json())
     .then(data => this.updateReview(data))
-
   }
 
   updateReview = editedReview => {
@@ -61,7 +58,6 @@ class AuthenticReview extends Component {
   }
 
   updateOrDeleteReview = (updatedReviews) => {
-
     let updatedRestaurant = {...this.props.currentRestaurant, reviews: updatedReviews}
     let updatedRestaurantList = this.props.restaurants.map(restaurant => {
       if(restaurant.id === updatedRestaurant.id){
@@ -76,51 +72,56 @@ class AuthenticReview extends Component {
 
 
   removedReview = (deletedReview) => {
-    let updatedReviews = this.props.currentRestaurant.reviews.filter( review => review.id !== deletedReview.id)
+    let updatedReviews = this.props.currentRestaurant.reviews.filter(review => review.id !== deletedReview.id)
     this.updateOrDeleteReview(updatedReviews)
   }
 
   render() {
     return(
       <div className="review-card">
-      <div className="inner-card">
-        <div>
-          {this.props.review.body}
-        </div>
-        <div>
-        <StarRatings
-        rating={this.state.rating}
-        starRatedColor="gold"
-
-        numberOfStars={5}
-        starDimension="3vmin"
-        name='rating'
-        />  <br />
-        </div>
-          {this.props.currentUser && this.props.currentUser.id === this.props.review.user.id ?
-          <div>
-            <div className={this.state.edit ? 'non' : "hidden"}>
-              <form onSubmit={event => this.edit(event)}>
-                <Form.Control as="textarea" rows="3" className="textbox" value={this.state.body} onChange={(event) => this.setState({body: event.target.value})}/><br />
-                <StarRatings
+          <div className="inner-card">
+            <div>
+              {this.props.review.body}
+            </div>
+            <div>
+              <StarRatings
                 rating={this.state.rating}
                 starRatedColor="gold"
-                changeRating={this.changeRating}
                 numberOfStars={5}
                 starDimension="3vmin"
                 name='rating'
-                />  <br />
-                <Button type="submit" value="Edit">Edit</Button>
-              </form>
-              <Button className="delete-button" onClick={() => this.delete()}> Delete</Button>
+              />  <br />
             </div>
-            <Button onClick={() => this.setState({edit: !this.state.edit})}>{this.state.edit ? 'Close Form' : 'Make a change'}</Button>
-          </div>
-        :
-          <div></div>
-        }
-      </div>
-      </div>
+            {this.props.currentUser && this.props.currentUser.id === this.props.review.user.id ?
+              <div>
+                <div className={this.state.edit ? 'non' : "hidden"}>
+                    <form onSubmit={event => this.edit(event)}>
+                      <Form.Control
+                        as="textarea"
+                        rows="3"
+                        className="textbox"
+                        value={this.state.body}
+                        onChange={(event) => this.setState({body: event.target.value})}
+                      /><br />
+                      <StarRatings
+                        rating={this.state.rating}
+                        starRatedColor="gold"
+                        changeRating={this.changeRating}
+                        numberOfStars={5}
+                        starDimension="3vmin"
+                        name='rating'
+                      />  <br />
+                      <Button type="submit" value="Edit">Edit</Button>
+                    </form>
+                    <Button className="delete-button" onClick={() => this.delete()}> Delete</Button>
+                </div>
+                <Button onClick={() => this.setState({edit: !this.state.edit})}>{this.state.edit ? 'Close Form' : 'Make a change'}</Button>
+            </div>
+          :
+            <div></div>
+          }
+        </div>
+    </div>
     )
   }
 }
@@ -132,7 +133,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   setCurrentRestaurant: (inputRestaurant) => ({type: 'SETCURRENTRESTAURANT', inputRestaurant}),
   loadrestaurant: (restaurants) => ({type: 'LOADRESTAURANTS', restaurants})
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthenticReview);

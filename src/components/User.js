@@ -14,7 +14,9 @@ directToViewedUserPage = () => {
   render(){
     return(
       <div>
-        <h3 onClick={() => this.directToViewedUserPage()}>{this.props.user.name}</h3>
+        <h3 onClick={() => this.directToViewedUserPage()}>
+          {this.props.user.name}
+        </h3>
       </div>
     )
   }
@@ -25,9 +27,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-
   setViewedUser: (inputUser) => ({type: 'SETVIEWEDUSER', inputUser})
-
 }
 
 

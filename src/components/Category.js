@@ -5,7 +5,6 @@ import { Form } from 'react-bootstrap';
 import Select from 'react-select';
 
 class Category extends Component {
-
   state = {
     selectedCategory: null,
     selectedCategoryName: 'Click to choose the category you would like to add',
@@ -30,7 +29,6 @@ class Category extends Component {
       .then(r => r.json())
       .then(data => this.addCategoryToCurrentUser(data))
     }
-
   }
 
   addCategoryToCurrentUser = (newCategoryUser) => {
@@ -38,7 +36,6 @@ class Category extends Component {
     // add that category to categories list
     // add categories list to spread of current user
     // use the setCurrentUser from index
-
     let categoriesusers = [...this.props.currentUser.category_user, newCategoryUser]
     let newUser = {...this.props.currentUser, category_user: categoriesusers}
     let newUsersList = this.props.users.map(user => {
@@ -55,9 +52,7 @@ class Category extends Component {
     this.props.history.push(`/users/${this.props.currentUser.id}`)
   }
 
-
   render(){
-    console.log(this.props.currentUser)
     const { selectedOption } = this.state;
     return (
       <div>
@@ -66,15 +61,22 @@ class Category extends Component {
           <div className="categories-list" >
             <h5> categories to choose from:</h5>
             <Select
-            value={ selectedOption }
-            options={this.props.categories.map(category => {return {value: category, label: category.name}})}
-            onChange={val =>this.setState({selectedCategory: val.value, selectedCategoryName: val.value.name})}/>
-            </div>
+              value={ selectedOption }
+              options={this.props.categories.map(category => {return {value: category, label: category.name}})}
+              onChange={val =>this.setState({selectedCategory: val.value, selectedCategoryName: val.value.name})}
+            />
           </div>
-          <div>
-            <div className="category-description">
+        </div>
+        <div>
+          <div className="category-description">
             {this.state.selectedCategoryName}<br />
-            <Form.Control as="textarea" rows="3" className="textbox" placeholder="Explain why you are qualified. Previous experience or a recipe post here!" onChange={(event) => this.setState({description: event.target.value})}/>
+            <Form.Control
+              as="textarea"
+              rows="3"
+              className="textbox"
+              placeholder="Explain why you are qualified. Previous experience or a recipe post here!"
+              onChange={(event) => this.setState({description: event.target.value})}
+            />
             <Button onClick={() => this.createCategoryUser()}> Add the category </Button>
           </div>
         </div>

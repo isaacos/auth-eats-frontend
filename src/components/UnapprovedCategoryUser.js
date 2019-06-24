@@ -39,7 +39,6 @@ class UnapprovedCategoryUser extends Component {
     let newViewedUser = {...this.props.viewedUser, category_user: newCategoryUserList }
     this.props.setViewedUser(newViewedUser)
     this.updateUsersList(newViewedUser)
-
   }
 
   updateUsersList = (newViewedUser) => {
@@ -61,8 +60,8 @@ class UnapprovedCategoryUser extends Component {
   displayButtonforCurrentUser = () => {
     if(this.props.currentUser){
       const sharedCategoryUser = this.currentUserSharedCategoryUser()
-      if( (sharedCategoryUser !== undefined) && (sharedCategoryUser.permission === true) ){
-        return   <Button onClick={() => this.changePermissiontoTrue()}> Approve this! </Button>
+      if((sharedCategoryUser !== undefined) && (sharedCategoryUser.permission === true)){
+        return <Button onClick={() => this.changePermissiontoTrue()}> Approve this! </Button>
       }
     }
   }
@@ -78,7 +77,6 @@ class UnapprovedCategoryUser extends Component {
         <p> needs approval (as we all do)</p>
         {this.props.category_user.description}
         {this.displayButtonforCurrentUser()}
-
       </div>
     )
   }
